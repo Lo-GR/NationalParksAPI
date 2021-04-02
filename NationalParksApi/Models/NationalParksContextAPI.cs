@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace NationalParksAPI.Models
 {
@@ -24,5 +23,7 @@ namespace NationalParksAPI.Models
           new Park {ParkId = 3, Name = "Rocky Mountain State Park", Distance = 265461, Established = "1915-01-26", ImageURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/ViewFromSummitofHallett.jpg/1920px-ViewFromSummitofHallett.jpg", StateId = 3}
         );
     }
+    public DbSet<Park> Parks {get; set;}
+    public DbSet<State> States {get; set;}
   }
 }
