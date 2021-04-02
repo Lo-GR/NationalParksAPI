@@ -71,5 +71,17 @@ namespace NationalParksAPI.Controllers
     {
       return _db.States.Any(entry => entry.StateId == id);
     }
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteMessage(int id)
+    {
+      State state = await _db.States.FindAsync(id);
+      if (state == null)
+      {
+        return NotFound();
+      }
+      _db.States.Remove(state);
+      await _db.SaveChangesAsync();
+      return NoContent();
+    }
   }
 }
