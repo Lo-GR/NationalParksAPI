@@ -43,5 +43,36 @@ namespace NationalParksAPI.Controllers
       }
       return park;
     }
+    [HttpPut("{id}")]
+    public async Task<ActionResult> Put(int id, Park park)
+    {
+      if (id != park.ParkId)
+      {
+        return NotFound();
+      }
+
+      _db.Entry(park).State = EntityState.Modified;
+
+      try
+      {
+        await _db.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!ParkExists(id))
+        {
+          return NotFound();
+        }
+        else
+        {
+          throw;
+        }
+      }
+      return NoContent();
+    }
+    private bool ParkExists(int id)
+    {
+      return _db.Parks.Any(entry => entry.ParkId == id);
+    }
   }
 }
