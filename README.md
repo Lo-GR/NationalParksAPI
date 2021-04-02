@@ -1,10 +1,8 @@
-# <div align="center"> **MessageBoard API** </div>
-### This is a MessageBoard API that comes with query parameters for message retrieval.
+# <div align="center"> **National Parks API** </div>
+### This is a National Parks API using full CRUD for State and Parks
 
  ### _Contributor(s) and Contact Info_
 > Logan Roth diamondintheroth@gmail.com - [GitHub(Lo-GR)](https://github.com/Lo-GR)
-
-> Ash Porter - [GitHub(KirbyPaint)](https://github.com/KirbyPaint)
 
 ---
 
@@ -15,6 +13,9 @@
 * **SDK 8.0.19**
 * **My SQL 8.0.19/WorkBench 8.0.19**
 * **Entity Framework**
+* **MVC.ApiVersioning 5**
+* **Swagger 3.0**
+
 
 ## _Concepts Used_ 🧠
 
@@ -22,11 +23,12 @@
 * **CRUD Functionality**
 * **Database Retrieval/Storage**
 * **API Development**
+* **API Versioning**
 
 ---
 
 ## _Description_ 📃
-This project is a demo API intended to be used to practice front-end API usage for a message board application. This API contains a set of 30 test messages, each containing a Title, Body, Date, User, and an (optional) image URL to go with the message post. The application allows for creation of new posts, viewing of all posts, editing existing posts, and deleting posts, to emulate a real-world forum application. All posts are assigned a Group, which includes the ability to create new groups and view groups. See API use for further details.
+This project is a demo API. It includes full CRUD for Parks and State objects for displaying an API. All parks are assigned a State for a many to one relationship and includes the ability to pull all parks with states. See API Use for further details.
 
 ---
 
