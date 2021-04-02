@@ -10,10 +10,10 @@ namespace NationalParksAPI.Controllers
   [ApiVersion("1.0")]
   [Route("api/{v:apiVersion}/[controller]")]
   [ApiController]
-  public class StatesV1Controller : ControllerBase
+  public class States1vController : ControllerBase
   {
     private readonly NationalParksAPIContext _db;
-    public StatesV1Controller(NationalParksAPIContext db)
+    public States1vController(NationalParksAPIContext db)
     {
       _db = db;
     }
