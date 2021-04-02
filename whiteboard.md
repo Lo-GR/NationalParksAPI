@@ -8,7 +8,7 @@ API Functionality___
   - Region
 2. Parks
   - Name
-  - Distance (in sq/ft)
+  - Distance (in acres)
   - Established (DateTime?)
 3. Further Exploration topics to consider, Swagger, Authentication.
 
