@@ -13,5 +13,15 @@ namespace NationalParksAPI.Controllers
   public class ParksController : ControllerBase
   {
     private readonly NationalParksAPIContext _db;
+    public ParksController(NationalParksAPIContext db)
+    {
+      _db = db;
+    }
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Park>>> Get ()
+    {
+      var query = _db.Parks.AsQueryable();
+      return await query.ToListAsync();
+    }
   }
 }
