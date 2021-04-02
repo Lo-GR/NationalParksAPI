@@ -23,10 +23,12 @@ namespace NationalParksAPI.Controllers
       var query = _db.Parks.AsQueryable();
       return await query.ToListAsync();
     }
-    //post without assigning state
-    [HttpPost]
-    public async Task<ActionResult<Park>> Post(Park park)
+    //since foreignkeys cannot be null by default, needed a way to pass stateids through endpoints.
+    [HttpPost("create/{stateid}")]
+    public async Task<ActionResult<Park>> Post(Park park, int stateId)
     {
+      var state = _db.States.FirstOrDefault(entry => entry.StateId == stateId);
+      park.StateId = state.StateId;
       _db.Parks.Add(park);
       await _db.SaveChangesAsync();
       return CreatedAtAction(nameof(GetPark), new {id = park.ParkId}, park);
