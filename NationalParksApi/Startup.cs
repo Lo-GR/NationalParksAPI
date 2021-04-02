@@ -6,8 +6,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using NationalParksAPI.Models;
 using System;
-using System.Reflection;
-using System.IO;
 using Microsoft.OpenApi.Models;
 
 namespace NationalParksAPI
@@ -21,7 +19,6 @@ namespace NationalParksAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -35,7 +32,6 @@ namespace NationalParksAPI
                     Version = "v1",
                     Title = "National Parks API",
                     Description = "A simple API designed for an Epicodus project. Full CRUD for Parks and States, including a one to many relationship between the two.",
-                    TermsOfService = new Uri("https://opensource.org/licenses/MIT"),
                     Contact = new OpenApiContact
                     {
                         Name = "Logan Roth (Lo-GR)",
@@ -51,7 +47,6 @@ namespace NationalParksAPI
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSwagger();
@@ -64,8 +59,6 @@ namespace NationalParksAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            // app.UseHttpsRedirection();
 
             app.UseRouting();
 
