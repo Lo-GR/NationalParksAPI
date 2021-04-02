@@ -23,6 +23,22 @@ namespace NationalParksAPI.Controllers
       var query = _db.States.Include(entry => entry.Parks).AsQueryable();
       return await query.ToListAsync();
     }
-    
+    [HttpPost]
+    public async Task<ActionResult<State>> Post(State state)
+    {
+      _db.States.Add(state);
+      await _db.SaveChangesAsync();
+      return CreatedAtAction(nameof(GetState), new {id = state.StateId, state});
+    }
+    [HttpGet("{id}")]
+    public async Task<ActionResult<State>> GetState(int id)
+    {
+      State state = await _db.States.FindAsync(id);
+      if (state == null)
+      {
+        return NotFound();
+      }
+      return state;
+    }
   }
 }
