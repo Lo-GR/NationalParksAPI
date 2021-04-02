@@ -17,9 +17,13 @@ namespace NationalParksAPI.Controllers
       _db = db;
     }
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Park>>> Get ()
+    public async Task<ActionResult<IEnumerable<Park>>> Get (string name)
     {
       var query = _db.Parks.AsQueryable();
+      if (name != null)
+      {
+        query = query.Where(entry => entry.Name.Contains(name));
+      }
       return await query.ToListAsync();
     }
     //since foreignkeys cannot be null by default, needed a way to pass stateids through endpoints.
