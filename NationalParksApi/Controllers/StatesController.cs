@@ -8,16 +8,15 @@ using NationalParksAPI.Models;
 namespace NationalParksAPI.Controllers
 {
   [ApiVersion("1.0")]
-  [Route("api/[controller]")]
+  [Route("api/{v:apiVersion}/[controller]")]
   [ApiController]
-  public class StatesController : ControllerBase
+  public class StatesV1Controller : ControllerBase
   {
     private readonly NationalParksAPIContext _db;
-    public StatesController(NationalParksAPIContext db)
+    public StatesV1Controller(NationalParksAPIContext db)
     {
       _db = db;
     }
-    [ApiVersion("1.0")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<State>>> Get(string name, string region)
     {
@@ -32,7 +31,6 @@ namespace NationalParksAPI.Controllers
       }
       return await query.ToListAsync();
     }
-    [ApiVersion("1.0")]
     [HttpPost]
     public async Task<ActionResult<State>> Post(State state)
     {
@@ -40,7 +38,6 @@ namespace NationalParksAPI.Controllers
       await _db.SaveChangesAsync();
       return CreatedAtAction(nameof(GetState), new {id = state.StateId}, state);
     }
-    [ApiVersion("1.0")]
     [HttpGet("{id}")]
     public async Task<ActionResult<State>> GetState(int id)
     {
@@ -51,7 +48,6 @@ namespace NationalParksAPI.Controllers
       }
       return state;
     }
-    [ApiVersion("1.0")]
     [HttpPut("{id}")]
     public async Task<ActionResult> Put(int id, State state)
     {
@@ -83,7 +79,6 @@ namespace NationalParksAPI.Controllers
     {
       return _db.States.Any(entry => entry.StateId == id);
     }
-    [ApiVersion("1.0")]
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteMessage(int id)
     {
