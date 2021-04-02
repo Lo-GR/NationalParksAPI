@@ -28,7 +28,7 @@ namespace NationalParksAPI.Controllers
     {
       _db.States.Add(state);
       await _db.SaveChangesAsync();
-      return CreatedAtAction(nameof(GetState), new {id = state.StateId, state});
+      return CreatedAtAction(nameof(GetState), new {id = state.StateId}, state);
     }
     [HttpGet("{id}")]
     public async Task<ActionResult<State>> GetState(int id)
@@ -39,6 +39,37 @@ namespace NationalParksAPI.Controllers
         return NotFound();
       }
       return state;
+    }
+    [HttpPut("{id}")]
+    public async Task<ActionResult> Put(int id, State state)
+    {
+      if (id != state.StateId)
+      {
+        return NotFound();
+      }
+
+      _db.Entry(state).State = EntityState.Modified;
+
+      try
+      {
+        await _db.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!StateExists(id))
+        {
+          return NotFound();
+        }
+        else
+        {
+          throw;
+        }
+      }
+      return NoContent();
+    }
+    private bool StateExists(int id)
+    {
+      return _db.States.Any(entry => entry.StateId == id);
     }
   }
 }
