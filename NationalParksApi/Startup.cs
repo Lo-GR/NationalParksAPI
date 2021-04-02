@@ -5,6 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using NationalParksAPI.Models;
+using System;
+using System.Reflection;
+using System.IO;
+using Microsoft.OpenApi.Models;
 
 namespace NationalParksAPI
 {
@@ -24,7 +28,27 @@ namespace NationalParksAPI
             services.AddDbContext<NationalParksAPIContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "National Parks API",
+                    Description = "A simple API designed for an Epicodus project. Full CRUD for Parks and States, including a one to many relationship between the two.",
+                    TermsOfService = new Uri("https://opensource.org/licenses/MIT"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Logan Roth (Lo-GR)",
+                        Email = string.Empty,
+                        Url = new Uri("https://github.com/Lo-GR"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT, (c) Logan Roth, 2021",
+                        Url = new Uri("https://opensource.org/licenses/MIT"),
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +59,7 @@ namespace NationalParksAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -51,5 +76,6 @@ namespace NationalParksAPI
                 endpoints.MapControllers();
             });
         }
+        
     }
 }
