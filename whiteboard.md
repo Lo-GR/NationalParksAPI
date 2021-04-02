@@ -11,9 +11,13 @@ API Functionality___
   - Distance (in acres)
   - Established (DateTime?)
 3. Further Exploration topics to consider, Swagger, Authentication, pagination.
-  - Reseraching for pagination: 
+  - Research for pagination: 
     - https://www.youtube.com/watch?v=cKj6U4qDmgQ
     - https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/nerddinner/implement-efficient-data-paging
+  - Research for versioning:
+    -https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning/
+    - https://neelbhatt.com/2018/04/21/api-versioning-in-net-core/
+    -https://dev.to/99darshan/restful-web-api-versioning-with-asp-net-core-1e8g
 
 
 Stretch Goal Ideas____
