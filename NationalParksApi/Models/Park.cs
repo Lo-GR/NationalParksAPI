@@ -13,5 +13,6 @@ namespace NationalParksAPI.Models
     [Required]
     public string Established {get; set;}
     public string ImageURL {get; set;}
+    public int StateId {get; set;}
   }
 }

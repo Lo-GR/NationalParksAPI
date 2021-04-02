@@ -15,5 +15,6 @@ namespace NationalParksAPI.Models
     [Required]
     public string Region {get; set;}
     public virtual ICollection<Park> Parks {get; set;}
+    
   }
 }
