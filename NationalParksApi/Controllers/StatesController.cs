@@ -23,5 +23,6 @@ namespace NationalParksAPI.Controllers
       var query = _db.States.Include(entry => entry.Parks).AsQueryable();
       return await query.ToListAsync();
     }
+    
   }
 }

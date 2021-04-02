@@ -23,5 +23,13 @@ namespace NationalParksAPI.Controllers
       var query = _db.Parks.AsQueryable();
       return await query.ToListAsync();
     }
+    //post without assigning state
+    [HttpPost]
+    public async Task<ActionResult<Park>> Post(Park park)
+    {
+      _db.Parks.Add(park);
+      await _db.SaveChangesAsync();
+      return CreatedAtAction(nameof(GetPark), new {id = park.ParkId}, park);
+    }
   }
 }
