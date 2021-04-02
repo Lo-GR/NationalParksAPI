@@ -7,7 +7,8 @@ using NationalParksAPI.Models;
 
 namespace NationalParksAPI.Controllers
 {
-  [Route("api/[controller]")]
+  [ApiVersion("1.0")]
+  [Route("api/{v:apiVersion}/[controller]")]
   [ApiController]
   public class ParksController : ControllerBase
   {
@@ -27,6 +28,7 @@ namespace NationalParksAPI.Controllers
       return await query.ToListAsync();
     }
     //since foreignkeys cannot be null by default, needed a way to pass stateids through endpoints.
+
     [HttpPost("create/{stateid}")]
     public async Task<ActionResult<Park>> Post(Park park, int stateId)
     {
@@ -36,6 +38,7 @@ namespace NationalParksAPI.Controllers
       await _db.SaveChangesAsync();
       return CreatedAtAction(nameof(GetPark), new {id = park.ParkId}, park);
     }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<Park>> GetPark(int id)
     {
@@ -46,6 +49,7 @@ namespace NationalParksAPI.Controllers
       }
       return park;
     }
+
     [HttpPut("{id}")]
     public async Task<ActionResult> Put(int id, Park park)
     {
@@ -77,6 +81,7 @@ namespace NationalParksAPI.Controllers
     {
       return _db.Parks.Any(entry => entry.ParkId == id);
     }
+
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteMessage(int id)
     {
