@@ -39,26 +39,34 @@ This project is a demo API. It includes full CRUD for Parks and State objects fo
 
 ### _Cloning and Initial Setup_
 
-> Repository: https://github.com/Lo-GR/MessageBoard.Solution.git
+> Repository: https://github.com/Lo-GR/NationalParksAPI.Solution.git
 1. In your terminal of choice or [GitHub's Desktop Application](https://desktop.github.com/), clone the above repository from Github. For further explanation on how to clone this repository, please visit [GitHub's Documentation](https://docs.github.com/en/github/using-git/which-remote-url-should-i-use).
 2. Ensure you are running .NET Core SDK by using the command dotnet --version in your terminal. If a version number is not presented, please visit [this download page for .NET 5 and install the applicable software for your OS](https://dotnet.microsoft.com/download/dotnet/5.0). 
-3. Once you verify you are running a .NET 5, navigate in your terminal to MessageBoard directory within the MessageBoard.Solution directory you just cloned. Once there, run "dotnet build" in your terminal to build application within directory. 
+3. Once you verify you are running a .NET 5, navigate in your terminal to NationalParksAPI directory within the NationalParksAPI.Solution directory you just cloned. Once there, run "dotnet build" in your terminal to build application within directory. 
 4. You will require a text or code editor to complete the following steps. [VS Code is recommended](https://code.visualstudio.com/)
-5. (optional)If changes to packages are required, add to csproj then run "dotnet restore." Also good for troubleshooting.
+5. (optional)If changes to packages are required, add respective packages to csproj then run "dotnet restore." Also good for troubleshooting.
 
 
 ### _Installation: Database Recreation_
 
 1. Ensure you are running MySQL Server 8 and MySQL WorkBench 8. If you are running windows, use the [Windows Installer ](https://dev.mysql.com/downloads/installer/) for MySQL and follow the instructions provided by the installer. For Macs, visit [MySQL Community Downloads](https://dev.mysql.com/downloads/mysql/) and select macOS from the Operation Systems. This will be a manual installation. If you need additional assistance on this, please visit Epicodus's [Learn How to Program Article](https://www.learnhowtoprogram.com/c-and-net/getting-started-with-c/installing-and-configuring-mysql).
-2. Once you verify you have SQL installed, create a file called "appsettings.json" in the project directory MessageBoard. Paste the following into this file. Replace bracketed POST OF SERVER and PASSWORD OF SERVER with ports and password set up during MySQL installation.
+2. Once you verify you have SQL installed, create a file called "appsettings.json" in the project directory NationalParksAPI. Paste the following into this file. Replace bracketed PORT OF CHOICE and PASSWORD OF CHOICE with ports and password set up during MySQL installation.
 ```
 {
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "AllowedHosts": "*",
   "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port={PORT OF SERVER};database=messageboard;uid=root;pwd={PASSWORD OF SERVER};"
+    "DefaultConnection": "Server=localhost;Port={PORT OF CHOICE};database=nationalparksapi;uid=root;pwd={PASSWORD OF CHOICE};"
   }
 }
 ```
-3. In the production directory "MessageBoard", run "dotnet ef database update" in your terminal.
+3. In the production directory "NationalParksAPI", run "dotnet ef database update" in your terminal.
 
 </details>
 
