@@ -91,7 +91,7 @@ Note: This API includes versioning. In order to access endpoints, a specific ver
 
 ### **API End Points: Parks**
 
-Example Value
+Example Return Value
 ```
 [
   {
@@ -121,55 +121,48 @@ https://localhost:5001/api/1/Parks/{id}
 ```
 Returns a specific Park by ID number. 
 
-### _Post Park by EndPoint_
+### _Post(Create) Park by EndPoint_
 ```
-http://localhost:5000/api/messages/id
+https://localhost:5001/api/1/Parks/create/{ID of State Park is in}
 ```
-Where `id` is the integer value of that message
-
-**Post a new message to the board Endpoint**
-```
-http://localhost:5000/api/messages/{GroupId you'd like to post to}/createmessage
-```
-
-**Edit a message by username Endpoint**
-```
-http://localhost:5000/api/messages/username/id
-```
-where `username` is the username as a string, and `id` is the post id as an integer
-
-Example of message body for Edit and Post endpoints
+This API will post a new park based on the requirement values below. I opted to push the State ID through the URL in order to avoid conflicts with foreign keys not being included. See below for example of values that can be entered.
 ```
 {
-  "title": "TITLE OF MESSAGE",
-  "body": "BODY OF MESSAGE",
-  "date": "2021-01-13",
-  "user": "USERNAME",
-  "imageURL": "URL OF IMAGE RELATING TO IMAGE (optional)"
+  "name": "string",
+  "distance": 0,
+  "established": "test",
+  "imageURL": null,{OPTIONAL}
 }
 ```
 
-Example of message body for Put endpoint
+### _Put(Edit) Park by EndPoint_
+```
+https://localhost:5001/api/1/Parks/{Park ID you'd like to edit}
+```
+Edit a park entry. All values are recommended to be included in the update. Returns no Response from server. See below for example:
+
 ```
 {
-    "MessageId": integer value of specific message id,
-    "title": "TITLE OF MESSAGE",
-    "body": "BODY OF MESSAGE",
-    "date": "2021-01-13",
-    "user": "USERNAME",
-    "imageURL": "URL OF IMAGE RELATING TO IMAGE (optional)"
-    "GroupId": integer value of message's specific group id
+  "parkId": 8,
+  "name": "string",
+  "distance": 0,
+  "established": "string",
+  "imageURL": "string",
+  "stateId": 1
 }
 ```
 
-**Delete a message by id Endpoint**
+### _Delete Park by EndPoint_
 ```
-http://localhost:5000/api/messages/username/id
+https://localhost:5001/api/1/Parks/{ID of park to delete}
 ```
-where `id` is the integer value of that message and `username` is the user of that message.
+Delete a park by ID entered. Returns no response.
 
-### _API End Points: Groups_
+### **API End Points: States**
+Example Return Value
+```
 
+```
 **Get all Endpoint** 
 ```
 http://localhost:5000/api/groups
