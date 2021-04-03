@@ -79,26 +79,49 @@ This project is a demo API. It includes full CRUD for Parks and State objects fo
 
 ### _API: Getting Started_
 
-Note: It is recommend to use [Postman](https://www.postman.com/) to practice API on. 
+Note: This API will launch swagger upon launching the server. Swagger will provide a GUI for endpoints on this api. You can also use [Postman](https://www.postman.com/) to practice endpoints on this API.
 
-1. Back in your terminal in the MessageBoard production directory, type "dotnet run." The terminal will present local host routes for your dedicated API link. An example would be "http://localhost:5000." 
+1. Back in your terminal in the NationalParksAPI production directory, type "dotnet run." The terminal will present local host routes for your dedicated API link. An example would be "http://localhost:5000." It will also launch Swagger in your default browser.
 2. Keep the terminal running as it is being used to control the local server. When finished, exit the terminal or use the command "CTRL C"(Windows) or "CMD C"(Mac) to shut down the local server.
-
-### _API End Points: Messages_
-
-**Get all Endpoint** 
+3. The following is the baseline of the link.
 ```
-http://localhost:5000/api/messages
+https://localhost:5001/api/{version #}/{parks OR states}
 ```
-This link will pull a full list of all messages available in database. Dummy messages between 40-69, MessageId from 1-39 are purposely left blank due to migrations.
+Note: This API includes versioning. In order to access endpoints, a specific version number must be entered in the URL.
 
-**Get messages by parameter Endpoint** 
-```
-http://localhost:5000/api/messages?parameter=string&parameter2=string
-```
-Available parameters: user, title, searchDate, startDate, endDate, body. See Query table below for more information.
+### **API End Points: Parks**
 
-**Get a message by its ID Endpoint**
+Example Value
+```
+[
+  {
+    "parkId": 0,
+    "name": "string",
+    "distance": 0,
+    "established": "string",
+    "imageURL": "string",
+    "stateId": 0
+  }
+]
+```
+
+### _Get All Parks EndPoint_
+```
+https://localhost:5001/api/1/Parks
+```
+This link will pull a full list of all messages available in database. The first 3 IDs are seeded. This route is queryable. Please see the below table for query options.
+
+| Parameter | Type | Description | Example |
+| :------------- | :------------- | :------------ | :-------------: |
+| name | string | Search for parks containing the argument | ?name=rocky | 
+
+### _Get Park by ID EndPoint_
+```
+https://localhost:5001/api/1/Parks/{id}
+```
+Returns a specific Park by ID number. 
+
+### _Post Park by EndPoint_
 ```
 http://localhost:5000/api/messages/id
 ```

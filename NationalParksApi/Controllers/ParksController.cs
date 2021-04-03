@@ -29,7 +29,7 @@ namespace NationalParksAPI.Controllers
     }
     //since foreignkeys cannot be null by default, needed a way to pass stateids through endpoints.
 
-    [HttpPost("create/{stateid}")]
+    [HttpPost("create/{stateId}")]
     public async Task<ActionResult<Park>> Post(Park park, int stateId)
     {
       var state = _db.States.FirstOrDefault(entry => entry.StateId == stateId);
