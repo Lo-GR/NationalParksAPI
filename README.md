@@ -104,24 +104,25 @@ Example Return Value
   }
 ]
 ```
+NOTE: Distance is intended to be measured in acres.
 
-### _Get All Parks EndPoint_
+### _Get All Parks EndPoint_ 🔵
 ```
 https://localhost:5001/api/1/Parks
 ```
-This link will pull a full list of all messages available in database. The first 3 IDs are seeded. This route is queryable. Please see the below table for query options.
+This link will pull a full list of all parks available in database. The first 3 IDs are seeded. This route is queryable. Please see the below table for query options.
 
 | Parameter | Type | Description | Example |
 | :------------- | :------------- | :------------ | :-------------: |
-| name | string | Search for parks containing the argument | ?name=rocky | 
+| name | string | Search for park names containing the argument | ?name=rocky | 
 
-### _Get Park by ID EndPoint_
+### _Get Park by ID EndPoint_ 🔵
 ```
 https://localhost:5001/api/1/Parks/{id}
 ```
 Returns a specific Park by ID number. 
 
-### _Post(Create) Park by EndPoint_
+### _Post(Create) Park by EndPoint_ 🟢
 ```
 https://localhost:5001/api/1/Parks/create/{ID of State Park is in}
 ```
@@ -135,7 +136,7 @@ This API will post a new park based on the requirement values below. I opted to 
 }
 ```
 
-### _Put(Edit) Park by EndPoint_
+### _Put(Edit) Park by EndPoint_ 🟠
 ```
 https://localhost:5001/api/1/Parks/{Park ID you'd like to edit}
 ```
@@ -152,7 +153,7 @@ Edit a park entry. All values are recommended to be included in the update. Retu
 }
 ```
 
-### _Delete Park by EndPoint_
+### _Delete Park by EndPoint_ 🔴
 ```
 https://localhost:5001/api/1/Parks/{ID of park to delete}
 ```
@@ -161,61 +162,72 @@ Delete a park by ID entered. Returns no response.
 ### **API End Points: States**
 Example Return Value
 ```
+[
+  {
+    "stateId": 0,
+    "name": "string",
+    "region": "string",
+    "parks": [
+      {
+        "parkId": 0,
+        "name": "string",
+        "distance": 0,
+        "established": "string",
+        "imageURL": "string",
+        "stateId": 0
+      }
+    ]
+  }
+]
+```
+### _Get all States by EndPoint_ 🔵
+```
+https://localhost:5001/api/1/States
+```
+This link will pull a full list of all states and their corresponding parks available in database. The first 3 IDs are seeded. This route is queryable. Please see the below table for query options.
 
-```
-**Get all Endpoint** 
-```
-http://localhost:5000/api/groups
-```
-This link will pull a full list of all groups available in database, along with messages linked to those groups.
+| Parameter | Type | Description | Example |
+| :------------- | :------------- | :------------ | :-------------: |
+| name | string | Search for state names containing the argument | ?name=colorado | 
+| region | string | Search for state regions containing the argument | ?region=mountain | 
 
-**Create a group Endpoint**
+### _Get State by ID EndPoint_ 🔵
 ```
-http://localhost:5000/api/groups
+https://localhost:5001/api/1/States/{id}
 ```
+Returns a specific State by ID number. 
 
-Example of body for Post endpoint
-
+### _Post(Create) State by EndPoint_ 🟢
+```
+https://localhost:5001/api/1/States/
+```
+This API will post a new state based on the requirement values below. See below for example of values that can be entered.
 ```
 {
-  "name": "NAME OF GROUP",
+  "name": "string",
+  "region": "string"
 }
 ```
 
-**Get group by ID Endpoint**
+### _Put(Edit) States by EndPoint_ 🟠
 ```
-http://localhost:5000/api/groups/id
+https://localhost:5001/api/1/Parks/{State ID you'd like to edit}
 ```
-where `id` is the integer value of that message
+Edit a State entry. All values are recommended to be included in the update except parks. Returns no Response from server. See below for example:
 
-
-### _Query Parameters: Messages_
-
-| Parameter | Type | Description | Example |
-| :------------- | :------------- | :------------ | :-------------: |
-| title | string | Search messages for title containing parameter | ?title=taco | 
-| user | string | Search messages for specific usernames | ?user=kirbypaint|
-| searchDate | YYYY-MM-DD | Search messages posted on specific date | ?searchDate=2021-01-02|
-| startDate | YYYY-MM-DD | Search messages posted after and on specific date | ?startDate=2021-01-02|
-| endDate | YYYY-MM-DD | Search messages posted before and on specific date | ?endDate=2021-01-02|
-| startDate + endDate | YYYY-MM-DD | Search messages posted between start and end date | ?startDate=2020-01-02&endDate=2021-01-02|
-| body | string | Search messages for body containing parameter | ?body=strangers | 
-
-_Example_
 ```
-http://localhost:5000/api/messages?searchDate=2021-01-13
+{
+  "stateId": 0,
+  "name": "string",
+  "region": "string",
+}
 ```
 
-### _Query Parameters: Groups_
-
-| Parameter | Type | Description | Example |
-| :------------- | :------------- | :------------ | :-------------: |
-| name | string | Search groups for name | ?name=tacofans | 
-
-_Example_
+### _Delete State by EndPoint_ 🔴
 ```
-http://localhost:5000/api/groups?name=tacofans
+https://localhost:5001/api/1/Parks/{ID of state to delete}
 ```
+Delete a park by ID entered. Returns no response.
 
 </details>
 
@@ -228,39 +240,34 @@ http://localhost:5000/api/groups?name=tacofans
 
 ## _Future Updates_ 🛠
 * Front End Example
+* A random Query
+* An additional version (2.0) with extended features.
 
 ---
 
 ## _Preplanning/Whiteboard Work_ 📋
 ```
 Expectations___
-1. As a user, I want to be able to GET all messages related to a specific group.
-2. As a user, I want to be able to POST messages to a specific group.
-3. As a user, I want to be able to see a list of all groups.
-4. As a user, I want to input date parameters and retrieve only messages posted during that timeframe.
-5. As a user, I want to be able to PUT and DELETE messages, but only if I wrote them. (Start by requiring a user_name param to match the user_name of the author on the message. You can always try authentication later.)
+1. Return API of states and national parks. Full CRUD of both. 
+2. Further exploration of one of the following objectives: authentication, versioning, pagination, Swagger documentation, or CORS.
 
 API Functionality___
-1. Make GET and POST routes for messages
-  - Get route allows for all messages of group
-  - Search Routes/Params for Get routes
-2. PUT and DELETE route for messages.
-3. Message Class
-  - Title of Message
-  - Body 
-  - Date of Posting
-  - User property for identity
-  - Image URL
-4. Identity implementation
-5. ApplicationUser Class  
-  - The whole identity sheabang
-6. Solid README for those picking up api
+1. States Class
+  - Name
+  - Region
+2. Parks
+  - Name
+  - Distance (in acres)
+  - Established (DateTime?)
+3. Further Exploration topics to consider, Swagger, Authentication, pagination.
+  - Research for pagination: 
+    - https://www.youtube.com/watch?v=cKj6U4qDmgQ
+    - https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/nerddinner/implement-efficient-data-paging
+  - Research for versioning:
+    -https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning/
+    - https://neelbhatt.com/2018/04/21/api-versioning-in-net-core/
+    -https://dev.to/99darshan/restful-web-api-versioning-with-asp-net-core-1e8g
 
-Stretch Goal Ideas____
-1. Replies class, one to many relationship to Message class
-
-Frontend Functionality___
-1. See list of all groups
 ```
 ---
 
@@ -268,6 +275,6 @@ Frontend Functionality___
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Copyright (c) 2021, Logan Roth, Ash Porter.
+Copyright (c) 2021, Logan Roth.
 
 Please contact Contributor for further use information or if you would like to make a contribution.
