@@ -211,7 +211,7 @@ This API will post a new state based on the requirement values below. See below 
 
 ### _Put(Edit) States by EndPoint_ 🟠
 ```
-https://localhost:5001/api/1/Parks/{State ID you'd like to edit}
+https://localhost:5001/api/1/States/{State ID you'd like to edit}
 ```
 Edit a State entry. All values are recommended to be included in the update except parks. Returns no Response from server. See below for example:
 
@@ -225,9 +225,9 @@ Edit a State entry. All values are recommended to be included in the update exce
 
 ### _Delete State by EndPoint_ 🔴
 ```
-https://localhost:5001/api/1/Parks/{ID of state to delete}
+https://localhost:5001/api/1/States/{ID of state to delete}
 ```
-Delete a park by ID entered. Returns no response.
+Delete a state by ID entered. Returns no response.
 
 </details>
 
